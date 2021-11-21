@@ -4,9 +4,8 @@ import router from './router'
 import store from './store'
 import Favorites from './views/Favorites'
 import Header from './components/Header'
-
-
-
+// import './assets/css/tailwind.css'
+import './assets/tailwind.css'
 
 const app = createApp(App)
 app.use(store)

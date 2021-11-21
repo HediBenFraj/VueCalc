@@ -1,31 +1,32 @@
 <template>
-  <div class="home">
-    <h2 class="title">VueCalc</h2>
-    <div class="operations container">
-      <label for="operations">Type d'opération {{$store.state.text}}</label>
-      <select v-model="operation" @change="calculate" name="" id="operations">
+  <div class="border rounded-md p-8">
+    <h2 class="text-4xl">VueCalc</h2>
+    <div class="my-8 flex justify-between w-6/12" >
+      <label for="operations">Type d'opération</label>
+      <select class="px-2" v-model="operation" @change="calculate" name="" id="operations">
         <option  value="+" >Addition</option>
         <option value="-">Soustraction</option>
         <option value="*">Multiplication</option>
         <option  value="/">Division</option>
       </select>
-      <button>Réinitialiser</button>
+      <button class=" bg-blue-500 text-white px-4" @click="reset">Réinitialiser</button>
     </div>
-    <div class="inputs container">
-      <input v-model="firstValue" type="text" placeholder="A = " @keyup="calculate" @change="test"> 
+    <div class="border my-8 border-gray-400 p-4 flex items-center">
+      <input class="border border-gray-400 py-1 px-4 mx-2 w-4/12" v-model="firstValue" type="text" placeholder="A = " @keyup="calculate" @change="test"> 
       <span>{{operation}}</span>
-      <input v-model="secondValue" type="text" name=""  id="" placeholder="B = " @keyup="calculate">
-      <span>
-        = <span v-show="!isNaN(result)">{{result}}</span>
+      <input class="border border-gray-400 py-1 px-4 mx-2  w-4/12" v-model="secondValue" type="text" name=""  id="" placeholder="B = " @keyup="calculate">
+      <span class="mx-2">
+        = 
       </span>
-      <button @click="addToFavorite">Ajouter aux favoris</button>
+      <span class="mx-2" v-show="!isNaN(result)">{{result}}</span>
+      <button :disabled='!firstValue && !secondValue' class=" bg-red-500 text-white px-4 py-1" @click="addToFavorite" >Ajouter aux favoris</button>
     </div>
-      <div class="container">
-        <h2>Favoris</h2>
-        <button>X Vider</button>
+      <div  class="my-8 flex items-center">
+        <h2 class="text-3xl">Favoris</h2>
+        <button class=" mx-2 py-1 px-3 bg-red-500 text-white" @click="emptyFavorites">X Vider</button>
       </div>
-     <div class="table-of-fav">
-       <FavoritesTable sizeLimit="5"/>
+     <div >
+       <FavoritesTable />
      </div>
     
   </div>
@@ -82,15 +83,29 @@ export default {
   }
 
   const addToFavorite = () =>{
-    console.log("here")
-    const entry = {
+    // if(result.value){
+ const entry = {
       timestamp : Date.now(),
       date :moment(new Date()).format("DD/MM/YYYY"),
       operation : firstValue.value+ operation.value + secondValue.value,
       result : result.value
     }
     store.commit('setFavorites',entry)
+    
+   
     console.log('entry',store.state.favorites)
+  }
+
+  const reset = ( ) => {
+    firstValue.value =''
+    secondValue.value = ''
+    operation.value = '+'
+    result.value=''
+
+  }
+
+  const emptyFavorites = ( ) => {
+    store.commit('emptyFavorites')
   }
 
   return{
@@ -100,6 +115,8 @@ export default {
     firstValue,
     secondValue,
     result,
+    reset,
+    emptyFavorites,
     calculate,
     addToFavorite
   }
@@ -107,9 +124,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.container{
-  display: flex;
-  flex-direction: row;
-}
-</style>
+

@@ -1,9 +1,9 @@
 <template>  
 
-  <div class="container">
+  <div class="w-full">
       
    <app-header></app-header>
-    <main>
+    <main class="w-8/12 p-8 ">
     <router-view/>
     </main>
     
@@ -24,13 +24,3 @@ export default {
 
 
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-</style>

@@ -3,7 +3,6 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     favorites : [],
-    text : "whatever"
   },
   mutations: {
     setFavorites(state,payload){
@@ -14,6 +13,9 @@ export default createStore({
       console.log("mutatung",timestamp) 
       const newState= state.favorites.filter(entry => entry.timestamp !== timestamp)
       state.favorites = newState
+    },
+    emptyFavorites(state){
+      state.favorites=[]
     }
   },
   actions: {

@@ -1,19 +1,19 @@
 <template>
-   <table>
+   <table class="border border-gray-500 w-9/12">
          <thead>
-           <td>Date</td>
-           <td>Operation</td>
-           <td>Result</td>
-          <td>action</td>
+           <td class="border w-1/4 text-center">Date</td>
+           <td class="border w-1/4 text-center">Operation</td>
+           <td class="border w-1/4 text-center">Result</td>
+           <td class="border w-1/4 text-center">action</td>
 
          </thead>
          <tbody>
-           <tr :key="entry.date" v-for="entry in resizedFavorites">
-             <td >{{entry.date}}</td>
-             <td>{{entry.operation}}</td>
-             <td>{{entry.result}}</td>
-            <td>
-              <button @click="$store.commit('deleteEntry',entry.timestamp)">Delete</button>
+           <tr :key="entry.date" v-for="entry in $store.state.favorites">
+             <td class="border w-1/4 text-center">{{entry.date}}</td>
+             <td class="border w-1/4 text-center">{{entry.operation}}</td>
+             <td class="border w-1/4 text-center">{{entry.result}}</td>
+            <td class="border w-1/4 text-center">
+              <button class=" text-red-600 hover:text-red-400" @click="$store.commit('deleteEntry',entry.timestamp)">Delete</button>
             </td>
            </tr>
          </tbody>
@@ -21,37 +21,8 @@
 </template>
 
 <script>
- import { useStore} from 'vuex'
+//  import { useStore} from 'vuex'
 export default {
-   
-    props : {
-        sizeLimit : Number
-    },
-    setup(props) {
-        const store = useStore()
-        const size = Number(props.sizeLimit)
-        let resizedFavorites 
-        if(props.sizeLimit && store.state.favorites.length > size)resizedFavorites = store.state.favorites.slice(1,size+1) 
-        else resizedFavorites = store.state.favorites
-        console.log("resized ",resizedFavorites)
-        return{
-            resizedFavorites
-        }
-    },
-    updated : () => {
-       const store = useStore()
-        const size = Number(props.sizeLimit)
-        let resizedFavorites 
-        if(props.sizeLimit && store.state.favorites.length > size)resizedFavorites = store.state.favorites.slice(1,size+1) 
-        else resizedFavorites = store.state.favorites
-        console.log("resized ",resizedFavorites)
-        return{
-            resizedFavorites
-        }
-    }
 }
 </script>
 
-<style>
-
-</style>

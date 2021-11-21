@@ -1,6 +1,6 @@
 <template>
   <div>
-      <span>Something</span>
+      <h2 class="text-3xl mb-4">Favoris</h2>
       <FavoritesTable/>
   </div>
 </template>
@@ -18,6 +18,3 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>>
