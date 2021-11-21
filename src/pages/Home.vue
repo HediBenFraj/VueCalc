@@ -36,7 +36,7 @@
 import { ref } from 'vue'
 import {useStore} from 'vuex'
 import moment from 'moment'
-import FavoritesTable from '../components/FavoritesTable.vue'
+import FavoritesTable from '../components/FavoritesPageComponents/FavoritesTable.vue'
 
 export default {
   components : {
@@ -45,18 +45,12 @@ export default {
   },
  setup() {
 
-   const store = useStore()
-
-   const favOperations = [{
-     date : 'zeud'
-
-   }]
+  const store = useStore()
   const firstValue = ref()
   const secondValue = ref()
   const result = ref()
-
-   const date = ''
-   const operation = ref("+")
+  const date = ''
+  const operation = ref("+")
 
 
 
@@ -83,7 +77,7 @@ export default {
   }
 
   const addToFavorite = () =>{
-    // if(result.value){
+
  const entry = {
       timestamp : Date.now(),
       date :moment(new Date()).format("DD/MM/YYYY"),
@@ -92,8 +86,6 @@ export default {
     }
     store.commit('setFavorites',entry)
     
-   
-    console.log('entry',store.state.favorites)
   }
 
   const reset = ( ) => {
@@ -109,7 +101,6 @@ export default {
   }
 
   return{
-    favOperations,
     date,
     operation,
     firstValue,

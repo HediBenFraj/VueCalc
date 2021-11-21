@@ -10,7 +10,6 @@ export default createStore({
       state.favorites.unshift(payload)
     },
     deleteEntry(state,timestamp){
-      console.log("mutatung",timestamp) 
       const newState= state.favorites.filter(entry => entry.timestamp !== timestamp)
       state.favorites = newState
     },

@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import FavoritesTable from '../components/FavoritesTable.vue'
+import FavoritesTable from '../components/FavoritesPageComponents/FavoritesTable.vue'
 export default {
   components:{
     name:'FavoritesTable',
